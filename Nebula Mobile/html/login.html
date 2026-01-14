@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Login / Signup</title>
+</head>
+<body bgcolor="black" text="white">
+  <center>
+    <h2>Connexion</h2>
+    <form id="loginForm">
+      <label for="loginEmail">Email :</label><br>
+      <input type="email" id="loginEmail" required><br><br>
+
+      <label for="loginPassword">Mot de passe :</label><br>
+      <input type="password" id="loginPassword" required><br><br>
+
+      <button type="submit">Se connecter</button>
+    </form>
+
+    <h2>Inscription</h2>
+    <form id="signupForm">
+      <label for="username">Nom :</label><br>
+      <input type="text" id="username" required><br><br>
+
+      <label for="email">Email :</label><br>
+      <input type="email" id="email" required><br><br>
+
+      <label for="password">Mot de passe :</label><br>
+      <input type="password" id="password" required><br><br>
+
+      <label for="confirmpassword">Confirmer :</label><br>
+      <input type="password" id="confirmpassword" required><br><br>
+
+      <button type="submit">S'inscrire</button>
+    </form>
+
+    <p id="errorMsg" style="color:red;"></p>
+  </center>
+
+  <script src="../script.js"></script>
+</body>
+</html>
