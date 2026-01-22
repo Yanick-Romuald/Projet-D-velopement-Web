@@ -1,42 +1,57 @@
 document.addEventListener("DOMContentLoaded", function() {
+
   let topMenu = document.getElementById("topMenu");
+  let contenu = document.getElementById("contenu");
   let loginBtn = document.getElementById("loginbutton");
+  let logoutBtn = document.getElementById("logoutbutton");
 
-  // Hide menu and logout button by default
-  if(topMenu) topMenu.style.display = "none";
-  if(contenu) contenu.style.display = "none"
-  if(loginBtn) loginBtn.style.display = "inline-block";
+  // --- État initial ---
+  if (topMenu) topMenu.style.display = "none";
+  if (contenu) contenu.style.display = "none";
+  if (loginBtn) loginBtn.style.display = "inline-block";
+  if (logoutBtn) logoutBtn.style.display = "none";
 
-  // Show menu and logout if user is logged in
-  if(localStorage.getItem("loggedInUser")) {
-    if (contenu) contenu.style.display = "block"
-    if(topMenu) topMenu.style.display = "block";
-    if(loginBtn) loginBtn.style.display = "none";
+  // --- Si l'utilisateur est connecté ---
+  if (localStorage.getItem("loggedInUser")) {
+    if (topMenu) topMenu.style.display = "block";
+    if (contenu) contenu.style.display = "block";
+    if (loginBtn) loginBtn.style.display = "none";
+    if (logoutBtn) logoutBtn.style.display = "inline-block";
   }
 
-  // Login button goes to login page
-  if(loginBtn) {
+  // --- Bouton Connexion ---
+  if (loginBtn) {
     loginBtn.addEventListener("click", function() {
       window.location.href = "html/login.html";
     });
   }
-  // Signup form
+
+  // --- Bouton Déconnexion ---
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", function() {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "index.html";
+    });
+  }
+
+  // --- Formulaire d'inscription ---
   let signupForm = document.getElementById("signupForm");
-  if(signupForm) {
+  if (signupForm) {
     signupForm.addEventListener("submit", function(event) {
       event.preventDefault();
+
       let username = document.getElementById("username").value;
       let email = document.getElementById("email").value;
       let password = document.getElementById("password").value;
       let confirmPassword = document.getElementById("confirmpassword").value;
 
-      if(password !== confirmPassword) {
+      if (password !== confirmPassword) {
         alert("Les mots de passe ne correspondent pas !");
         return;
       }
 
       let users = JSON.parse(localStorage.getItem("users") || "[]");
-      users.push({username: username, email: email, password: password});
+      users.push({ username, email, password });
       localStorage.setItem("users", JSON.stringify(users));
 
       localStorage.setItem("loggedInUser", email);
@@ -45,18 +60,19 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  // Login form
+  // --- Formulaire de connexion ---
   let loginForm = document.getElementById("loginForm");
-  if(loginForm) {
+  if (loginForm) {
     loginForm.addEventListener("submit", function(event) {
       event.preventDefault();
+
       let email = document.getElementById("loginEmail").value;
       let password = document.getElementById("loginPassword").value;
 
       let users = JSON.parse(localStorage.getItem("users") || "[]");
       let found = users.find(u => u.email === email && u.password === password);
 
-      if(found) {
+      if (found) {
         localStorage.setItem("loggedInUser", email);
         alert("Connexion réussie !");
         window.location.href = "../index.html";
@@ -65,4 +81,5 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
   }
+
 });
