@@ -4,20 +4,20 @@
   <meta charset="UTF-8">
   <title>Nebula Mobile</title>
   <link rel="icon" href="img/favicon.png" type="image/png">
-<style>
 
+  <style>
     button {
       background-color: red;
     }
+    .button {
+      display: none;
+    }
+  </style>
 
-
-  .button {
-    display: none;
-  }
-
-</style>
-
+  <!-- Chargement du script principal -->
+  <script src="script.js" defer></script>
 </head>
+
 <body bgcolor="black">
 
 <!--Top bar menu-->
@@ -27,13 +27,16 @@
     <a href="html/téléphones.html" style="margin:40px; color:white; text-decoration:none;">Téléphones</a>
     <a href="html/accésoires.html" style="margin:40px; color:white; text-decoration:none;">Accésoires</a>
     <a href="html/montres.html" style="margin:40px; color:white; text-decoration:none;">Montres</a>
+    <button id="logoutbutton" style="margin-left:40px;">Déconnexion</button>
   </div>
 </div>
 
 <button id="loginbutton" style="margin-left:40px;">Connexion</button>
+
 <!--Website title-->
 <img src="img/nebula mobile logo.png" align="left" width="200" alt="Le logo de Nebula Mobile"/>
 <img src="img/nebula mobile logo.png" align="right" width="200" alt="Le logo de Nebula Mobile"/>
+
 <center>
   <font color="white" face="Verdana">
     <h1>Nebula Mobile</h1>
@@ -41,7 +44,7 @@
   </font>
 </center>
 
-<br /><br /><br /><br />
+<br><br><br><br>
 
 <!-- Available Phones-->
 <table align="center">
@@ -62,29 +65,6 @@
     </font></td>
   </tr>
 </table>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-  let topMenu = document.getElementById("topMenu");
-  let loginBtn = document.getElementById("loginbutton");
-
-  // Hide menu and logout button by default
-  topMenu.style.display = "none";
-  contenu.style.display = "none"
-
-  // Show menu and logout if user is logged in
-  if(localStorage.getItem("loggedInUser")) {
-    topMenu.style.display = "block";
-    contenu.style.display = "block"
-    button.style.display = "none";
-  }
-
-  // Login button goes to login page
-  loginBtn.addEventListener("click", function() {
-    window.location.href = "html/login.html";
-  });
-});
-</script>
 
 </body>
 </html>
